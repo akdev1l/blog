@@ -1,0 +1,4 @@
+alpha.blog.akdev.xyz	1	IN	NS	ns-1905.awsdns-46.co.uk.
+alpha.blog.akdev.xyz	1	IN	NS	ns-1441.awsdns-52.org.
+alpha.blog.akdev.xyz	1	IN	NS	ns-804.awsdns-36.net.
+alpha.blog.akdev.xyz	1	IN	NS	ns-213.awsdns-26.com.

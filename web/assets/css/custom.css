@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+    background-color: black;
+    padding: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #07c407;
+}
+
+h1 {
+    font-family: 'Press Start 2P', monospace;
+}
+a {
+    color: #07c407;
+}
+#downloads {
+    text-align: right;
+}
+.container #page-title {
+    font-family: 'Press Start 2P', monospace;
+    text-decoration: none;
+}
+.container #page-title div {
+    font-size: 48px;
+    color: green;
+}
+.container #page-description {
+    color: white;
+}
+
+.shell-prompt {
+    color: white;
+    text-decoration: none;
+    padding-left: 1rem;
+    margin-right: 2rem;
+}
+
+.shell-user {
+    color: red;
+}
+
+#downloads .btn {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+}
+.tree-output {
+    padding-left: 4rem;
+    font-family: 'Share Tech Mono', monospace;
+    line-height: 1.75em;
+}

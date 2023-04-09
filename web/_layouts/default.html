@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/custom.css?v=' | append: site.github.build_revision | relative_url }}">
+{% seo %}
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="page-title" href="{{ '/' | relative_url }}">
+            <div>
+                <span class="shell-user">akdev</span><span class="shell-prompt">$</span><span class="shell-command">{{ site.title | default: site.github.repository_name }}</span>
+            </div>
+        </a>
+        <h2 id="page-description">{{ site.description | default: site.github.project_tagline }}</h2>
+        <hr />
+
+        <section id="downloads">
+          {% if site.show_downloads %}
+            <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
+            <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
+          {% endif %}
+          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+      <h1><span class="shell-prompt">$</span><span class="shell-command">tree posts</span></h1>
+      <div>
+      {% for post in site.posts %}
+        <div class="tree-output">
+            <span>{% if forloop.last %}`{% else %}|{% endif %}── <a href="{{ post.url }}">{{ post.title }}</a></span>
+            <span> - </span>
+            <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_long_string }}</time>
+        </div>
+      {% endfor %}
+      </div>
+      </section>
+    </div>
+  </body>
+</html>

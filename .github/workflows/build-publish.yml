@@ -1,0 +1,22 @@
+name: build and publish blog
+
+on:
+  push:
+    paths-ignore: '**.md'
+    branches: [ "master" ]
+
+jobs:
+  build-builder:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+	- name: Assume role using OIDC
+	  uses: aws-actions/configure-aws-credentials@master
+	  with:
+		role-to-assume: arn:aws:iam::388957960204:role/github-ci-role
+		aws-region: us-east-1
+    - name: build website static pages
+      run: ./build.sh ${{ matrix.image }}

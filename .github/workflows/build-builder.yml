@@ -1,0 +1,32 @@
+name: build and publish blog
+
+on:
+  push:
+    paths-ignore: '**.md'
+    branches: [ "master" ]
+
+jobs:
+  build-builder:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: buildah action
+	  id: build-image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        image: blog
+        tags: latest ${{ github.sha }}
+        containerfiles: |
+          ./Containerfile
+    - name: push to registry
+      id: push-ghcr
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ${{ steps.build-image.outputs.image }}
+        tags: ${{ steps.build-image.outputs.tags }}
+        registry: ghcr.io/${{ github.repository_owner }}
+        username: ${{ github.actor }}
+        password: ${{ github.token }}

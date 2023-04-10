@@ -18,5 +18,13 @@ jobs:
 	  with:
 		role-to-assume: arn:aws:iam::388957960204:role/github-ci-role
 		aws-region: us-east-1
-    - name: build website static pages
-      run: ./build.sh ${{ matrix.image }}
+    - name: build and deploy alpha
+      run: |
+        source ./activate
+        cd ./infra
+        ./deploy-alpha.sh
+    - name: build and deploy prod
+      run: |
+        source ./activate
+        cd ./infra
+        ./deploy-prod.sh

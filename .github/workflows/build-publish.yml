@@ -11,20 +11,17 @@ jobs:
       contents: read
       packages: write
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/blog/blog:builder
     steps:
       - uses: actions/checkout@v3
       - name: Assume role using OIDC
         uses: aws-actions/configure-aws-credentials@master
         with:
-          role-to-assume: arn:aws:iam::388957960204:role/github-ci-role
+          role-to-assume: arn:aws:iam::388957960204:role/BlogStack-BlogDeploymentRole7868D1CE-1J19VO8MEOD72
           aws-region: us-east-1
       - name: build and deploy alpha
         run: |
           source ./activate
           cd ./infra
           ./deploy-alpha.sh
-      - name: build and deploy prod
-        run: |
-          source ./activate
-          cd ./infra
-          ./deploy-prod.sh

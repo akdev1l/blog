@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - main
+name: release-please
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      releases_created: ${{ steps.release-please.outputs.releases_created }}
+      tag: ${{ steps.release-please.outputs.tag_name }}
+      upload_url: ${{ steps.release-please.outputs.upload_url }}
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release-please
+        with:
+          release-type: node
+          package-name: release-please-action
+
+  build-deploy-prod:
+    name: build and push to prod
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: needs.release-please.outputs.releases_created
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/blog/blog:builder
+    steps:
+      - uses: actions/checkout@v3
+      - name: build and deploy prod
+        run: |
+          cd ./infra
+          ./deploy-prod.sh
